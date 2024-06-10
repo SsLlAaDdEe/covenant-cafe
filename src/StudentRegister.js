@@ -1,22 +1,22 @@
-// src/StudentLogin.js
+// src/StudentRegister.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './StudentLogin.css';
+import './StudentRegister.css';
 
-const StudentLogin = () => {
+const StudentRegister = () => {
     const [studentId, setStudentId] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
-        // Add login logic here
-        console.log('Login with:', { studentId, password });
+        // Add register logic here
+        console.log('Register with:', { studentId, email, password });
     };
 
     return (
-        <div className="login-container">
-            <h2>Student Login</h2>
-            <form onSubmit={handleLogin}>
+        <div className="register-container">
+            <h2>Student Register</h2>
+            <form onSubmit={handleRegister}>
                 <div className="form-group">
                     <label htmlFor="studentId">Student ID</label>
                     <input
@@ -24,6 +24,16 @@ const StudentLogin = () => {
                         id="studentId"
                         value={studentId}
                         onChange={(e) => setStudentId(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
@@ -37,11 +47,10 @@ const StudentLogin = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="login-button">Login</button>
+                <button type="submit" className="register-button">Register</button>
             </form>
-            <Link to="/student-register" className="register-link">Register</Link>
         </div>
     );
 };
 
-export default StudentLogin;
+export default StudentRegister;

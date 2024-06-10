@@ -8,8 +8,8 @@ const HomePage = () => {
         <div className="homepage-container">
             <h1 className="homepage-title">Covenant University: Cafe 1</h1>
             <div className="button-container">
-                <Link to="/student-login" className="homepage-button">Login/Sign up as a Student</Link>
-                <Link to="/staff-login" className="homepage-button">Login/Sign up as a Staff</Link>
+                <Link to="/student-login" className="homepage-button">Student</Link>
+                <Link to="/staff-login" className="homepage-button">Staff</Link>
             </div>
         </div>
     );

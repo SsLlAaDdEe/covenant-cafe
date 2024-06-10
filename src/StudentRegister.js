@@ -1,30 +1,57 @@
 // src/StudentRegister.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './StudentRegister.css';
 
 const StudentRegister = () => {
-    const [name, setName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [studentId, setStudentId] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const history = useNavigate();
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        // Add register logic here
-        console.log('Register with:', { name, studentId, email, password });
+        try {
+            // Replace with your API endpoint
+            const response = await axios.post('/api/student/register', {
+                firstName,
+                lastName,
+                studentId,
+                email,
+                password,
+            });
+            alert('User Registered');
+            history.push('/student-login');
+        } catch (error) {
+            console.error('Registration error', error);
+            alert('Failed to register');
+        }
     };
 
     return (
         <div className="register-container">
             <h2>Student Register</h2>
             <form onSubmit={handleRegister}>
-                 <div className="form-group">
-                    <label htmlFor="name">Name</label>
+                <div className="form-group">
+                    <label htmlFor="firstName">First Name</label>
                     <input
                         type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        id="firstName"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                         required
                     />
                 </div>

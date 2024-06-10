@@ -1,16 +1,30 @@
 // src/StaffRegister.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './StaffRegister.css';
 
 const StaffRegister = () => {
     const [staffId, setStaffId] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const history = useNavigate();
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        // Add register logic here
-        console.log('Register with:', { staffId, email, password });
+        try {
+            // Replace with your API endpoint
+            const response = await axios.post('/api/staff/register', {
+                staffId,
+                email,
+                password,
+            });
+            alert('User Registered');
+            history.push('/staff-login');
+        } catch (error) {
+            console.error('Registration error', error);
+            alert('Failed to register');
+        }
     };
 
     return (

@@ -1,16 +1,26 @@
 // src/StudentLogin.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './StudentLogin.css';
 
 const StudentLogin = () => {
     const [studentId, setStudentId] = useState('');
     const [password, setPassword] = useState('');
+    const history = useNavigate();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        // Add login logic here
-        console.log('Login with:', { studentId, password });
+    const handleLogin = async () => {
+        const userData = { student_id: studentId, password };
+
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/student/login', userData);
+            const { name, balance, transaction_history } = response.data;
+            history.push('/frontpage', { name, balance, transaction_history });
+          } catch (error) {
+            console.error('Login failed:', error);
+            alert('Failed to login');
+          }
     };
 
     return (
@@ -37,7 +47,7 @@ const StudentLogin = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="login-button">Login</button>
+                <button type="submit" className="login-button" onClick={handleLogin}>Login</button>
             </form>
             <Link to="/student-register" className="register-link">Register</Link>
         </div>

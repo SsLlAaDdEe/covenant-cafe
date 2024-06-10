@@ -1,6 +1,7 @@
 # backend/views.py
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate
 from .models import Student, Staff
 import json
 
@@ -33,3 +34,23 @@ def staff_register(request):
             return JsonResponse({'message': 'Staff registered successfully'})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
+
+@csrf_exempt
+def student_login(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        student_id = data.get('student_id')
+        password = data.get('password')
+        try:
+            student = Student.objects.get(student_id=student_id)
+            if student.check_password(password):
+                return JsonResponse({
+                    'message': 'Login successful',
+                    'name': student.first_name,
+                    'balance': student.account_balance,
+                    'transaction_history': list(student.transaction_set.all().values())
+                })
+            else:
+                return JsonResponse({'error': 'Invalid credentials'}, status=400)
+        except Student.DoesNotExist:
+            return JsonResponse({'error': 'Invalid credentials'}, status=400)

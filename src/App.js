@@ -7,6 +7,7 @@ import StudentLogin from './StudentLogin';
 import StaffLogin from './StaffLogin';
 import StudentRegister from './StudentRegister';
 import StaffRegister from './StaffRegister';
+import FrontPage from './FrontPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/staff-login" element={<StaffLogin />} />
         <Route path="/student-register" element={<StudentRegister/>} />
         <Route path="/staff-register" element={<StaffRegister/>} />
+        <Route path="/frontpage" element={<FrontPage/>} />
       </Routes>
     </Router>
   );

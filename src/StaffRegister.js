@@ -14,7 +14,7 @@ const StaffRegister = () => {
         e.preventDefault();
         try {
             // Replace with your API endpoint
-            const response = await axios.post('http://127.0.0.1:8000//api/staff/register', {
+            const response = await axios.post('http://127.0.0.1:8000/api/staff/register', {
                 staffId,
                 email,
                 password,

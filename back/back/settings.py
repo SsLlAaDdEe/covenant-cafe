@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'backend',
     'corsheaders',
 ]
@@ -58,6 +59,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
 
+AUTH_USER_MODEL = 'backend.CustomUser'
 CORS_ALLOW_HEADERS = [
     'Accept',
     'Content-Type',

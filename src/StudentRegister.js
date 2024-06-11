@@ -23,8 +23,10 @@ const StudentRegister = () => {
                 email,
                 password,
             });
+            console.log(firstName, lastName, studentId, email, password)
             alert('User Registered');
             history.push('/student-login');
+            window.location.href = '/studen-login';
         } catch (error) {
             console.error('Registration error', error);
             alert('Failed to register');

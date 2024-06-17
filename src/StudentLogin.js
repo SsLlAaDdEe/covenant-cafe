@@ -8,13 +8,12 @@ import './StudentLogin.css';
 const StudentLogin = () => {
     const [studentId, setStudentId] = useState('');
     const [password, setPassword] = useState('');
-    const history = useNavigate();
+    const history =useNavigate();
 
     const handleLogin = async () => {
-        const userData = { student_id: studentId, password };
-
+        const userData = { student_id: studentId, password }
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/student/login', userData);
+            const response = await axios.post('http://127.0.0.1:8000/api/student/login/', userData);
             const { name, balance, transaction_history } = response.data;
             history.push('/frontpage', { name, balance, transaction_history });
           } catch (error) {
@@ -47,7 +46,7 @@ const StudentLogin = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="login-button" onClick={handleLogin}>Login</button>
+                <button type="submit" className="login-button">Login</button>
             </form>
             <Link to="/student-register" className="register-link">Register</Link>
         </div>

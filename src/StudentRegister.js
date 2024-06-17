@@ -12,26 +12,24 @@ const StudentRegister = () => {
     const [password, setPassword] = useState('');
     const history = useNavigate();
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
+    const handleRegister = async () => {
+        const userData = {
+          first_name: firstName,
+          last_name: lastName,
+          student_id: studentId,
+          email: email,
+          password: password,
+        };
+    
         try {
-            // Replace with your API endpoint
-            const response = await axios.post('http://127.0.0.1:8000/api/student/register', {
-                firstName,
-                lastName,
-                studentId,
-                email,
-                password,
-            });
-            console.log(firstName, lastName, studentId, email, password)
-            alert('User Registered');
-            history.push('/student-login');
-            window.location.href = '/studen-login';
+          const response = await axios.post('http://127.0.0.1:8000/api/student/register/', userData);
+          console.log(response.data); // Handle success response
+          alert('User Registered');
         } catch (error) {
-            console.error('Registration error', error);
-            alert('Failed to register');
+          console.error('Registration failed:', error); // Handle error
+          alert('Failed to Register');
         }
-    };
+      };
 
     return (
         <div className="register-container">

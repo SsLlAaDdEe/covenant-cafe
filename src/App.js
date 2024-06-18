@@ -12,11 +12,11 @@ const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" exact component={HomePage} />
-                <Route path="/student-login" component={StudentLogin} />
-                <Route path="/staff-login" component={StaffLogin} />
-                <Route path="/student-register" component={StudentRegister} />
-                <Route path="/staff-register" component={StaffRegister} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/student-login" element={<StudentLogin />} />
+                <Route path="/staff-login" element={<StaffLogin />} />
+                <Route path="/student-register" element={<StudentRegister />} />
+                <Route path="/staff-register" element={<StaffRegister />} />
             </Routes>
         </Router>
     );

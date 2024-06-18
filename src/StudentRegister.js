@@ -22,7 +22,7 @@ const StudentRegister = () => {
         };
     
         try {
-          const response = await axios.post('http://127.0.0.1:8000/api/student/register/', userData);
+          const response = await axios.post('http://127.0.0.1:8000/api/users/register/', userData);
           console.log(response.data); // Handle success response
           alert('User Registered');
         } catch (error) {

@@ -5,6 +5,8 @@ import axios from 'axios';
 import './StaffRegister.css';
 
 const StaffRegister = () => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [staffId, setStaffId] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,9 +15,10 @@ const StaffRegister = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            // Replace with your API endpoint
-            const response = await axios.post('http://127.0.0.1:8000/api/staff/register/', {
-                staffId,
+            const response = await axios.post('http://localhost:8000/api/users/register/', {
+                first_name: firstName,
+                last_name: lastName,
+                staff_id: staffId,
                 email,
                 password,
             });
@@ -31,6 +34,26 @@ const StaffRegister = () => {
         <div className="register-container">
             <h2>Staff Register</h2>
             <form onSubmit={handleRegister}>
+                <div className="form-group">
+                    <label htmlFor="firstName">First Name</label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required
+                    />
+                </div>
                 <div className="form-group">
                     <label htmlFor="staffId">Staff ID</label>
                     <input

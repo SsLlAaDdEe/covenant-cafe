@@ -1,17 +1,28 @@
 /* src/StaffRegister.css */
 
-.register-container {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    background-color: white;
+    margin: 0;
 }
 
-.register-container h2 {
-    color: purple;
+.register-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+h2 {
     margin-bottom: 20px;
+    color: #333333;
+    text-align: center;
 }
 
 .form-group {
@@ -21,22 +32,49 @@
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: purple;
+    color: #555555;
 }
 
 .form-group input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
 .register-button {
-    background-color: purple;
-    color: white;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
     border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
     cursor: pointer;
-    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .register-container {
+        padding: 15px;
+    }
+
+    .form-group input {
+        padding: 8px;
+    }
+
+    .register-button {
+        padding: 8px;
+        font-size: 14px;
+    }
 }
